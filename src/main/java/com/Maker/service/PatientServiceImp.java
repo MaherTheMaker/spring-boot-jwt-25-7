@@ -49,6 +49,11 @@ public class PatientServiceImp implements PatientService {
         oldPatient.setDeciduousTeeth(patient.getDeciduousTeeth());
         oldPatient.setCareWays(patient.getCareWays());
         oldPatient.setHabits(patient.getHabits());
+        oldPatient.setFamilyStatus(patient.getFamilyStatus());
+        oldPatient.setLastVisitToADoctor(patient.getLastVisitToADoctor());
+        oldPatient.setEmail(patient.getEmail());
+        oldPatient.setAddress(patient.getAddress());
+        oldPatient.setDiscountType(patient.getDiscountType());
 
 
 
