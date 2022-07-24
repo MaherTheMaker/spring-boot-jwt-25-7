@@ -4,6 +4,7 @@ import com.Maker.dao.PatientRepo;
 import com.Maker.model.*;
 
 import com.Maker.service.PatientService;
+import com.Maker.service.PatientToothService;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +24,9 @@ public class PatientController {
     private PatientService patientService;
 
     @Autowired
+    private PatientToothService patientToothService;
+
+    @Autowired
     private PatientRepo patientRepo;
 
     @GetMapping("/all")
@@ -38,6 +42,11 @@ public class PatientController {
     @PostMapping("/{pId}/Diagnosis")
     public ResponseEntity<Patient> Diagnosis(@RequestBody Patient patient,@PathVariable int pId){
         return ResponseEntity.ok().body(patientService.DiagnosisOrEdit(patient,pId));
+    }
+
+    @GetMapping("/{pId}/Teeth")
+    public ResponseEntity<List<PatientTooth>> GetTeeth(@PathVariable int pId){
+        return ResponseEntity.ok().body(patientToothService.GetPatientTeeth(pId));
     }
 
     @PostMapping("/searchPatient/{username}")

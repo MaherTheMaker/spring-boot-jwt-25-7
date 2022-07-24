@@ -8,6 +8,7 @@ import com.Maker.dao.PatientRepo;
 import com.Maker.model.File;
 import com.Maker.model.Image;
 import com.Maker.model.Patient;
+import com.Maker.model.PatientTooth;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -29,7 +30,6 @@ public class PatientServiceImp implements PatientService {
 
     @Autowired
     private PatientToothService patientToothService;
-    //Todo addToothPatient .....semi done
 
     @Override
     public Patient addPatient(Patient patient) {
@@ -45,6 +45,7 @@ public class PatientServiceImp implements PatientService {
     @Override
     public Patient DiagnosisOrEdit(Patient patient,int pId) {
         Patient oldPatient = patientRepo.findById(pId);
+
         oldPatient.setAge(patient.getAge());
         oldPatient.setDeciduousTeeth(patient.getDeciduousTeeth());
         oldPatient.setCareWays(patient.getCareWays());
@@ -61,8 +62,10 @@ public class PatientServiceImp implements PatientService {
 
         if (result.getDeciduousTeeth()!=null)
         {
-            //TODO uncomment
-//            patientToothService.addPatientTooth(result);
+            //TODO check if not the first
+           List<PatientTooth> test= patientToothService.GetPatientTeeth(pId);
+           if(test.isEmpty())
+            patientToothService.addPatientTooth(result);
         }
 
 

@@ -8,6 +8,8 @@ import com.Maker.model.Tooth;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public class PatientToothImp implements PatientToothService {
 
@@ -23,17 +25,20 @@ public class PatientToothImp implements PatientToothService {
 
         @Override
         public String addPatientTooth(Patient patient) {
-            if(patient.getDeciduousTeeth()) {
 
-                for (int i = 1; i <= 20 ; i++ ){
-                    patientToothRepo.save(new PatientTooth(toothRepo.findById(i).getToothNumber(),patient.getId(),null,null,null));
+
+                for (int i = 1; i <= 52 ; i++ ){
+                    patientToothRepo.save(new PatientTooth(toothRepo.findById(i).getId(),patient.getId(),null,null,null));
             }
 
-        }
-            else for (int i = 21 ; i<=53 ; i++){
-                patientToothRepo.save(new PatientTooth(toothRepo.findById(i).getToothNumber(),patient.getId(),null,null,null));
-            }
+
             return "Done";
     }
+
+    @Override
+    public List<PatientTooth> GetPatientTeeth(int pId) {
+        return patientToothRepo.findAllByPatientId(pId);
+    }
+
 
 }

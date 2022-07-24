@@ -1,7 +1,5 @@
 package com.Maker.model;
 
-import org.springframework.beans.factory.annotation.Value;
-
 import javax.persistence.*;
 
 
@@ -13,27 +11,27 @@ public class Tooth {
     private int id;
 
     @Column(unique = true,nullable = false)
-    private int toothNumber;
+    private String toothNumber;
 
     @Column(nullable = false,length = 50)
     private String type;
 
-    @Column(unique = true,nullable = false,length = 25)
+    @Column(nullable = false,length = 25)
     private String name;
 
 
-    public Tooth(int toothNumber, String type, String name) {
+    public Tooth(String toothNumber, String type, String name) {
         this.toothNumber = toothNumber;
         this.type = type;
         this.name = name;
     }
 
 
-    public int getToothNumber() {
+    public String getToothNumber() {
         return toothNumber;
     }
 
-    public void setToothNumber(int toothNumber) {
+    public void setToothNumber(String toothNumber) {
         this.toothNumber = toothNumber;
     }
 

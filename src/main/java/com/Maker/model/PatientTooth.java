@@ -22,11 +22,11 @@ public class PatientTooth {
 
     @Column(length = 25)
     @Value("White")
-    private String color;
+    private String color="White";
 
     @Column(length = 200)
     @Value("normal")
-    private String status;
+    private String status="Normal";
 
     @Column(length = 200)
     private String notes;
@@ -35,9 +35,9 @@ public class PatientTooth {
     public PatientTooth(int toothId, int patientId, String color, String status, String notes) {
         this.toothId = toothId;
         this.patientId = patientId;
-        this.color = color;
-        this.status = status;
-        this.notes = notes;
+//        this.color = color;
+//        this.status = status;
+//        this.notes = notes;
     }
 
     public PatientTooth() {
