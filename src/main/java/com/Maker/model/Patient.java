@@ -1,6 +1,7 @@
 package com.Maker.model;
 
 import javax.persistence.*;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -20,35 +21,82 @@ public class Patient {
     private short age;
 
 
-    private Boolean DeciduousTeeth;
+    private Boolean deciduousTeeth;
     private String familyStatus;
     private float balance = 0.0f ;
     private String discountType;
 
-    public Patient(String fullName, Gender gender, String phoneNumber, String email, String address, short age, Boolean deciduousTeeth, String familyStatus, float balance, String discountType, List<Image> gallery, List<File> filesList) {
+    //Todo move to separate table
+
+    Date lastVisitToADoctor;
+    String careWays;
+    String habits;
+
+    public Patient(String fullName, Gender gender, String phoneNumber, String email, String address, short age, Boolean deciduousTeeth, String familyStatus, float balance, String discountType, Date lastVisitToADoctor, String careWays, String habits, List<Image> gallery, List<File> filesList) {
         this.fullName = fullName;
         this.gender = gender;
         this.phoneNumber = phoneNumber;
         this.email = email;
         this.address = address;
         this.age = age;
-        DeciduousTeeth = deciduousTeeth;
+        this.deciduousTeeth = deciduousTeeth;
         this.familyStatus = familyStatus;
         this.balance = balance;
         this.discountType = discountType;
+        this.lastVisitToADoctor = lastVisitToADoctor;
+        this.careWays = careWays;
+        this.habits = habits;
         this.gallery = gallery;
         this.filesList = filesList;
     }
+
+    //Todo join with a new table called Dental history
+    // dentalHistory dentalHistory;
+
+    //Todo join with a new table called Med History
+    //  MedHistory dentalHistory;
+
+
+
+    public Date getLastVisitToADoctor() {
+        return lastVisitToADoctor;
+    }
+
+    public void setLastVisitToADoctor(Date lastVisitToADoctor) {
+        this.lastVisitToADoctor = lastVisitToADoctor;
+    }
+
+    public String getCareWays() {
+        return careWays;
+    }
+
+    public void setCareWays(String careWays) {
+        this.careWays = careWays;
+    }
+
+    public String getHabits() {
+        return habits;
+    }
+
+    public void setHabits(String habits) {
+        this.habits = habits;
+    }
+
+
+
+
+
+
 
     public Patient() {
     }
 
     public Boolean getDeciduousTeeth() {
-        return DeciduousTeeth;
+        return deciduousTeeth;
     }
 
     public void setDeciduousTeeth(Boolean deciduousTeeth) {
-        DeciduousTeeth = deciduousTeeth;
+        this.deciduousTeeth = deciduousTeeth;
     }
 
     public void setFilesList(List<File> filesList) {

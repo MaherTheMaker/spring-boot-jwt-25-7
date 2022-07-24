@@ -26,16 +26,19 @@ public class PatientController {
     private PatientRepo patientRepo;
 
     @GetMapping("/all")
-    public ResponseEntity<List<Patient>>getClinics ( ) {
+    public ResponseEntity<List<Patient>>GetAllPatient ( ) {
         return ResponseEntity.ok().body(patientService.getAllPatients());
     }
 
     @PostMapping("/save")
-    public ResponseEntity<Patient> addClinic(@RequestBody Patient patient){
+    public ResponseEntity<Patient> addPatient(@RequestBody Patient patient){
         return ResponseEntity.ok().body(patientService.addPatient(patient));
     }
 
-
+    @PostMapping("/{pId}/Diagnosis")
+    public ResponseEntity<Patient> Diagnosis(@RequestBody Patient patient,@PathVariable int pId){
+        return ResponseEntity.ok().body(patientService.DiagnosisOrEdit(patient,pId));
+    }
 
     @PostMapping("/searchPatient/{username}")
     public ResponseEntity<List<Patient>> getPlan(@PathVariable String username){

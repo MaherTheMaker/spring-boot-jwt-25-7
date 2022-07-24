@@ -10,7 +10,7 @@ public interface PatientService {
 
     Patient addPatient(Patient patient);
     List<Patient> getAllPatients();
-
+    Patient DiagnosisOrEdit(Patient patient,int pId);
     List<Patient> searchPatient(String name);
 
     Patient getPatient(int id);
@@ -19,6 +19,7 @@ public interface PatientService {
     File addFile(int pId , File file);
     List<Image> getAllImage(int id);
     List<File> getAllFile(int id);
+
 
 }
 

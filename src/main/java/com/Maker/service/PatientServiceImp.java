@@ -11,6 +11,7 @@ import com.Maker.model.Patient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import javax.swing.text.html.Option;
 import java.util.List;
 
 @Repository
@@ -26,7 +27,10 @@ public class PatientServiceImp implements PatientService {
     @Autowired
     private FileRepo fileRepo;
 
-    //Todo addToothPatient
+    @Autowired
+    private PatientToothService patientToothService;
+    //Todo addToothPatient .....semi done
+
     @Override
     public Patient addPatient(Patient patient) {
         return
@@ -36,6 +40,28 @@ public class PatientServiceImp implements PatientService {
     @Override
     public List<Patient> getAllPatients() {
         return patientRepo.findAll();
+    }
+
+    @Override
+    public Patient DiagnosisOrEdit(Patient patient,int pId) {
+        Patient oldPatient = patientRepo.findById(pId);
+        oldPatient.setAge(patient.getAge());
+        oldPatient.setDeciduousTeeth(patient.getDeciduousTeeth());
+        oldPatient.setCareWays(patient.getCareWays());
+        oldPatient.setHabits(patient.getHabits());
+
+
+
+       Patient result= patientRepo.save(oldPatient);
+
+        if (result.getDeciduousTeeth()!=null)
+        {
+            //TODO uncomment
+//            patientToothService.addPatientTooth(result);
+        }
+
+
+        return result;
     }
 
 
