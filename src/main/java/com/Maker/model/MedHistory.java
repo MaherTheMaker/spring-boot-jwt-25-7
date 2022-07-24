@@ -16,13 +16,13 @@ public class MedHistory {
     @JsonIgnore
     private Patient patient;
 
-//    @OneToMany(mappedBy = "plan" , cascade = CascadeType.ALL , orphanRemoval = true)
-//	private List<ClinicPlan> clinicPlans;
+    @ManyToOne
+    @JoinColumn(name="illness_id")
     private Illness illness;
 
     public MedHistory(Patient patient, Illness illness) {
         this.patient = patient;
-//        this.illness = illness;
+        this.illness = illness;
     }
     private String notes;
 
@@ -43,11 +43,11 @@ public class MedHistory {
         this.patient = patient;
     }
 
-//    public Illness getIllness() {
-//        return illness;
-//    }
-//
-//    public void setIllness(Illness illness) {
-//        this.illness = illness;
-//    }
+    public Illness getIllness() {
+        return illness;
+    }
+
+    public void setIllness(Illness illness) {
+        this.illness = illness;
+    }
 }

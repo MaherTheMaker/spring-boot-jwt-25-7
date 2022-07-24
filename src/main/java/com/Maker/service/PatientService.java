@@ -17,8 +17,10 @@ public interface PatientService {
 
     Image addImage(int pId ,Image image);
     File addFile(int pId , File file);
+    MedHistory addMedHis(int pId , int IId,String notes);
     List<Image> getAllImage(int id);
     List<File> getAllFile(int id);
+    List<MedHistory> getAllMedHis(int id);
 
 
 }

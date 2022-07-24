@@ -23,6 +23,9 @@ public class IllnessServiceImp implements IllnessService {
     }
 
     @Override
+    public Illness getIllness(int id) {  return illnessRepo.findById(id).get();     }
+
+    @Override
     public List<Illness> getAllIllness() {
         return illnessRepo.findAll();
     }

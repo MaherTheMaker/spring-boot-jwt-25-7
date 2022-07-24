@@ -53,8 +53,11 @@ public class Patient {
     //Todo join with a new table called Dental history
     // dentalHistory dentalHistory;
 
+
+
     //Todo join with a new table called Med History
     //  MedHistory dentalHistory;
+
 
 
 
@@ -81,10 +84,6 @@ public class Patient {
     public void setHabits(String habits) {
         this.habits = habits;
     }
-
-
-
-
 
 
 
@@ -202,6 +201,17 @@ public class Patient {
         return filesList;
     }
 
+    @OneToMany(mappedBy = "patient", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<MedHistory> medHistoryList;
+
+    public void setMedHistoryList(List<MedHistory> medHistoryList) {
+        this.medHistoryList = medHistoryList;
+    }
+
+    public List<MedHistory> getMedHistoryList() {
+        return medHistoryList;
+    }
+
 //    public void setFilesList(List<File> filesList) {
 //        this.filesList = filesList;
 //    }
@@ -212,3 +222,4 @@ public class Patient {
 //    private List<PIllness> MedHistory;
 
 }
+

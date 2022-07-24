@@ -8,5 +8,6 @@ public interface IllnessService {
 
     Illness addIllness(Illness illness);
     Illness getIllness(String username);
+    Illness getIllness(int id);
     List<Illness> getAllIllness();
 }

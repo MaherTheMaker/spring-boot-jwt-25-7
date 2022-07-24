@@ -10,5 +10,6 @@ import java.util.List;
 
 public interface MedHisRepo extends JpaRepository<MedHistory,Integer> {
     List<MedHistory> findAllByPatient(Patient patient);
+    List<MedHistory> findAllByIllness(Patient patient);
 
 }

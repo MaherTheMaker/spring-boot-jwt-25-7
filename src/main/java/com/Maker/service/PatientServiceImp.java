@@ -3,16 +3,13 @@ package com.Maker.service;
 //import com.Maker.dao.FileRepo;
 import com.Maker.dao.FileRepo;
 import com.Maker.dao.ImageRepo;
+import com.Maker.dao.MedHisRepo;
 import com.Maker.dao.PatientRepo;
 //import com.Maker.model.File;
-import com.Maker.model.File;
-import com.Maker.model.Image;
-import com.Maker.model.Patient;
-import com.Maker.model.PatientTooth;
+import com.Maker.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import javax.swing.text.html.Option;
 import java.util.List;
 
 @Repository
@@ -29,7 +26,14 @@ public class PatientServiceImp implements PatientService {
     private FileRepo fileRepo;
 
     @Autowired
+    private MedHisRepo medHisRepo;
+
+    @Autowired
     private PatientToothService patientToothService;
+
+    @Autowired
+    private IllnessService illnessService;
+
 
     @Override
     public Patient addPatient(Patient patient) {
@@ -106,6 +110,20 @@ public class PatientServiceImp implements PatientService {
     }
 
     @Override
+    public MedHistory addMedHis(int pId,int IID,String notes) {
+        Patient patient = patientRepo.findById(pId);
+        Illness illness =illnessService.getIllness(IID);
+        MedHistory medHistory=new MedHistory();
+        medHistory.setIllness(illness);
+        medHistory.setPatient(patient);
+        MedHistory me = medHisRepo.save(medHistory);
+        if (me!=null){
+            patient.getMedHistoryList().add(medHistory);
+        }
+        return me;
+    }
+
+    @Override
     public List<Image> getAllImage(int id) {
         Patient patient = patientRepo.findById(id);
         return imageRepo.findAllByPatient(patient);
@@ -118,6 +136,11 @@ public class PatientServiceImp implements PatientService {
         return fileRepo.findAllByPatient(patient);
     }
 
+    @Override
+    public List<MedHistory> getAllMedHis(int id) {
+        Patient patient = patientRepo.findById(id);
+        return medHisRepo.findAllByPatient(patient);
+    }
 
 
 }

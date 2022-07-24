@@ -5,6 +5,7 @@ import com.Maker.model.*;
 
 import com.Maker.service.PatientService;
 import com.Maker.service.PatientToothService;
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -64,6 +65,11 @@ public class PatientController {
     public ResponseEntity addFile (@PathVariable int pId , @RequestBody File file){
         return ResponseEntity.ok().body(patientService.addFile(pId,file));
     }
+    @PostMapping("/{pId}/addMedHis")
+    public ResponseEntity addMedHis (@PathVariable int pId , @RequestBody MedHistoryData medHistory){
+        return ResponseEntity.ok().body(patientService.addMedHis(pId,medHistory.IllId,medHistory.notes));
+    }
+
 
     @GetMapping("/{pId}/getAllImage")
     public ResponseEntity<List<Image>>getGallery (@PathVariable int pId){
@@ -75,6 +81,18 @@ public class PatientController {
         return ResponseEntity.ok().body(patientService.getAllFile(pId));
     }
 
+    @GetMapping("/{pId}/getAllMedHis")
+    public ResponseEntity<List<MedHistory>>getAllMedHis (@PathVariable int pId){
+        return ResponseEntity.ok().body(patientService.getAllMedHis(pId));
+    }
+
+
 
 
 }
+@Data
+class MedHistoryData{
+    public int IllId;
+    public String notes;
+}
+
